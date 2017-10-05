@@ -24,34 +24,43 @@ Ejemplo: String.fromCharCode(65,66,67) // return 'ABC';
 
 Consideraciones Específicas
 
-1.	- Tu programa debe ser capaz de cifrar.
-	- Descifrar tanto letras mayúsculas como minúsculas. La fórmula para descifrar es: (x - n) % 26
+1.	- Tu programa debe ser capaz de cifrar. :)
+	- Descifrar tanto letras mayúsculas como minúsculas. :)
+
+	- La fórmula para descifrar es: (x - n) % 26
+	
 2. Tu código debe estar compuesto por 2 funciones con los siguientes nombres: cipher y decipher :)
 3. El usuario no debe poder ingresar:
 	- Un campo vacío  	:)
 	- Que contenga números
 
-###########################################################################################*/
+	###########################################################################################*/
 function cipher(msg){
 	do{
 		msg=prompt("Escribe tu mensaje a cifrar:");
-		console.log(msg);
-		/* (/^\s+$/.test(msg)) obliga a que el valor introducido por el usuario no sólo esté 
-		formado por espacios en blanco.*/
-		if(msg != ""){
-			for (var i = 0; i < msg.length; i++) {
-		    	strAscii=msg.charCodeAt(i);
-		    	console.log(strAscii);
-	    	}		    
-		}else{
-			alert("No puede ingresar números, ni dejar en blanco");
-		    
-	    }
-	}while(msg== null || msg.length <= 0 || /^\s+$/.test(msg) || isNaN(msg)==false); //Revisa que el dato ingresado esté vacío y no sea número;
-}
 
+	}while(msg== null || msg.length <= 0 || /^\s+$/.test(msg) || !isNaN(msg)); //Revisa que el dato ingresado esté vacío y no sea número;
+	/* (/^\s+$/.test(msg)) obliga a que el valor introducido por el usuario no sólo esté 
+	formado por espacios en blanco.*/
+	var arrayCipher=[];
+	var strCipher= [];
+	
+	for (var i = 0; i < msg.length; i++) {
+	   	strAscii=msg.charCodeAt(i); //Le saco el cod. ASCII a la letra del msg inicial
+
+	   	//Fórmula
+	   	arrayCipher.push((strAscii -65 + 33)%26 + 65); //Obtengo el cod. ASCII de la letra cifrada y lo ingreso al arrayCipher
+	}
+	
+	for (var i = 0; i < arrayCipher.length; i++) {
+	   	strCipher.push(String.fromCharCode(arrayCipher[i]));
+	   	cesarCiphed=strCipher.join('');
+	}	
+	   alert(cesarCiphed);
+}
 
 function decipher(){
 
 }
+
 cipher();
